@@ -1,3 +1,4 @@
 .env
 heat.pickle
 __pycache__
+output.png
