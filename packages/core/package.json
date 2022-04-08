@@ -1,0 +1,19 @@
+{
+  "name": "@placebot/core",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "esbuild src/index.ts --bundle --platform=node --format=cjs --external:ws --outfile=dist/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "thatretrodev",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^17.0.23",
+    "esbuild": "^0.14.34"
+  },
+  "dependencies": {
+    "ws": "^8.5.0"
+  }
+}

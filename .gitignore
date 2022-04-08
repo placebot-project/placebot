@@ -1,5 +1,2 @@
-.env
-heat.pickle
-__pycache__
-output.png
-examples
+packages/*/node_modules
+packages/*/dist
