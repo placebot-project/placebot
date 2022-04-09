@@ -11,7 +11,7 @@ heat = read_heatmap()
 
 print(heat)
 
-im = Image.new("RGB", (1024, 1024), color=(255, 255, 255))
+im = Image.new("RGB", (1024, 1024), color=(0, 0, 0))
 pixels = im.load()
 
 for i in heat.keys():
