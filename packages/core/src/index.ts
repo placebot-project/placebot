@@ -48,7 +48,7 @@ class Place {
 		this.socket.on("message", data => {
 			if (data.length == 11) {
 				console.log(data);
-				this.pixelCallback(decodePixel(data.buffer));
+				this.pixelCallback(decodePixel(new Uint8Array(data).buffer));
 			}
 		});
 	}
