@@ -19,6 +19,13 @@ offset = (int(sys.argv[2]), int(sys.argv[3]))
 #offset = (114, 5)
 # offset = ((1024 // 2) - (width // 2), (1024 // 2) - (height // 2))
 
+delay = 0.125
+
+if len(sys.argv) == 5:
+	delay = float(sys.argv[4])
+
+#if len(sys.argv)
+
 async def bot(uri):
 	async with connect(uri, extra_headers=headers) as websocket:
 		canvas_im = get_canvas()
