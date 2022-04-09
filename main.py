@@ -52,7 +52,7 @@ async def bot(uri):
 						#print("Updating " + str(decoded_data["x"]) + ", " + str(decoded_data["x"]))
 						canvas_pixels[decoded_data["x"], decoded_data["y"]] = decoded_data["color"]
 
-					await asyncio.sleep(0.125)
+					await asyncio.sleep(delay)
 
 asyncio.run(bot("wss://pl.g7kk.com/ws"))
 
