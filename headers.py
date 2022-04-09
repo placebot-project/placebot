@@ -1,5 +1,9 @@
 from dotenv import load_dotenv
+import platform
 import os
+
+if platform.system() != "Linux":
+	print("WARNING: Only Linux is officially supported. This means that the maintainers will not help you if you have an OS-specific problem, and will only help with reproducible problems that also apply to Linux.")
 
 load_dotenv()
 
