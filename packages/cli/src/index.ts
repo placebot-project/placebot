@@ -1,4 +1,4 @@
-const protocol = require('@placebot/core');
+const { Place } = require('@placebot/core');
 const fs = require('fs');
 
 const config = JSON.parse(fs.readFileSync(process.argv[2], "utf8"));
@@ -12,5 +12,7 @@ else {
 
 if (require.main == module) {
 	console.log(config);
-	console.log(protocol.encodePixel(0, 0, [255, 255, 255]));
+
+	let place = new Place("localhost:3000", false, data => {console.log(data);});
+	//console.log(protocol.encodePixel(0, 0, [255, 255, 255]));
 }
