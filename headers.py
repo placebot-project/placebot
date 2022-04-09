@@ -4,7 +4,7 @@ import os
 load_dotenv()
 
 headers = {
-	"User-Agent": os.environ["USER_AGENT"],
+	"User-Agent": "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:96.0) Gecko/20100101 Firefox/96.0",
 	"Accept": "*/*",
 	"Accept-Language": "en-US,en;q=0.5",
 	"Accept-Encoding": "gzip, deflate, br",
