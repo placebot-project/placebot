@@ -20,5 +20,6 @@ headers = {
 	"Sec-Fetch-Mode": "websocket",
 	"Sec-Fetch-Site": "same-origin",
 	"Pragma": "no-cache",
-	"Cache-Control": "no-cache"
+	"Cache-Control": "no-cache",
+	"X-Place-Bot": "1"
 }

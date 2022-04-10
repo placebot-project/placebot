@@ -19,11 +19,15 @@ def check_config():
 		return True
 
 def start_web_interface():
-	start_server(sys.argv[1], int(sys.argv[2]), int(sys.argv[3]), check_config)
+	pass
+	#start_server(sys.argv[1], int(sys.argv[2]), int(sys.argv[3]), check_config)
 
 im = Image.open(sys.argv[1]).convert("RGB")
 pixels = im.load()
 width, height = im.size
+
+if width > 100 or height > 100:
+	exit()
 
 offset = (int(sys.argv[2]), int(sys.argv[3]))
 #offset = (387, 381)
@@ -73,19 +77,16 @@ async def bot(uri):
 		print("Finished!")
 		sys.exit()
 
-def start_bot():
-	asyncio.run(bot("wss://pl.g7kk.com/ws"))
+#async def pixelwar(uri):
+#	print("Starting bot...")
+#
+#	async with connect(uri, extra_headers=headers) as websocket:
+#		while True:
+#			packet_data = decode_pixel(await websocket.recv())
+#			if packet_data["color"] == (0, 0, 0) or packet_data["color"] == (173, 21, 25) or packet_data["color"] == (250, 189, 0):
+#				print(packet_data["x"], packet_data["y"])
+#				await asyncio.sleep(delay)
+#				await websocket.send(encode_pixel(packet_data["x"], packet_data["y"], (255, 255, 255)))
+#				await asyncio.sleep(delay)
 
-
-#threading.Thread(target=start_web_interface).start()
-threading.Thread(target=start_bot).start()
-
-start_web_interface()
-
-#while True:
-#	try:
-#		asyncio.run(bot("wss://pl.g7kk.com/ws"))##"ws://localhost:3000/ws"))
-#		break
-#	except:
-#		pass
-#	time.sleep(0.5)
+asyncio.run(bot("wss://pl.g7kk.com/ws"))
