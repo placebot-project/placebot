@@ -98,4 +98,4 @@ async def bot(uri):
 #				await websocket.send(encode_pixel(packet_data["x"], packet_data["y"], (255, 255, 255)))
 #				await asyncio.sleep(delay)
 
-#asyncio.run(bot("wss://pl.g7kk.com/ws"))
+asyncio.run(bot("wss://pl.g7kk.com/ws"))
