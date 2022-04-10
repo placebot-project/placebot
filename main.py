@@ -4,6 +4,7 @@ from protocol import *
 from headers import *
 from canvas import *
 from PIL import Image
+import threading
 import asyncio
 import random
 import time
@@ -17,7 +18,8 @@ def check_config():
 	else:
 		return True
 
-start_server(sys.argv[1], int(sys.argv[2]), int(sys.argv[3]), check_config)
+def start_web_interface():
+	start_server(sys.argv[1], int(sys.argv[2]), int(sys.argv[3]), check_config)
 
 im = Image.open(sys.argv[1]).convert("RGB")
 pixels = im.load()
@@ -38,12 +40,16 @@ if len(sys.argv) == 5:
 #if len(sys.argv)
 
 async def bot(uri):
+	print("Starting bot...")
+
 	async with connect(uri, extra_headers=headers) as websocket:
 		canvas_im = get_canvas()
 		canvas_pixels = canvas_im.load()
 
 		for y in range(height):
 			for x in range(width):
+
+				#print(x, y)
 
 				#print(canvas_pixels[offset[0] + x, offset[1] + y])
 				#print(pixels[x, y])
@@ -64,13 +70,22 @@ async def bot(uri):
 						canvas_pixels[decoded_data["x"], decoded_data["y"]] = decoded_data["color"]
 
 					await asyncio.sleep(delay)
+		print("Finished!")
+		sys.exit()
 
-asyncio.run(bot("wss://pl.g7kk.com/ws"))
+def start_bot():
+	asyncio.run(bot("wss://pl.g7kk.com/ws"))
 
-while True:
-	try:
-		asyncio.run(bot("wss://pl.g7kk.com/ws"))##"ws://localhost:3000/ws"))
-		break
-	except:
-		pass
-	time.sleep(0.5)
+
+#threading.Thread(target=start_web_interface).start()
+threading.Thread(target=start_bot).start()
+
+start_web_interface()
+
+#while True:
+#	try:
+#		asyncio.run(bot("wss://pl.g7kk.com/ws"))##"ws://localhost:3000/ws"))
+#		break
+#	except:
+#		pass
+#	time.sleep(0.5)
