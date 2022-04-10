@@ -1,4 +1,5 @@
 from websockets import connect
+from placebotweb import *
 from protocol import *
 from headers import *
 from canvas import *
@@ -7,6 +8,16 @@ import asyncio
 import random
 import time
 import sys
+
+def check_config():
+	test_request = requests.get("https://pl.g7kk.com/stat", headers=headers)
+
+	if test_request.status_code != 200:
+		return False
+	else:
+		return True
+
+start_server(sys.argv[1], int(sys.argv[2]), int(sys.argv[3]), check_config)
 
 im = Image.open(sys.argv[1]).convert("RGB")
 pixels = im.load()

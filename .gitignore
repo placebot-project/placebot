@@ -1,5 +1,8 @@
 .env
 heat.pickle
 __pycache__
+*/__pycache__
 output.png
 examples
+web
+dist.zip
