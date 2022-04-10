@@ -1,53 +1,45 @@
-from flask import Flask, jsonify, send_from_directory
-from flask_cors import CORS
+import threading
 import requests
 import zipfile
 import json
 import os
+import io
 
-def download_web_zip():
-	response = requests.get("https://github.com/thatretrodev/placebot-web/releases/download/0.0.1/dist.zip")
+def download_web_dist():
+	response = requests.get("https://github.com/thatretrodev/placebot-web/releases/download/0.0.2/dist.zip")
 
-	f = open("dist.zip", "wb")
-	f.seek(0)
-	f.write(response.content)
-	f.close()
+	os.mkdir("web")
 
-def start_server(image, x, y, config_checker):
-	if not os.path.isdir("web"):
-		print("Downloading a static build of placebot-web...")
+	with zipfile.ZipFile(io.BytesIO(response.content), "r") as f:
+		f.extractall("web")
+
+def download_web_server():
+	response = requests.get("https://github.com/thatretrodev/placebot-web/releases/download/0.0.2/placebot-server.zip")
+
+	with zipfile.ZipFile(io.BytesIO(response.content), "r") as f:
+		f.extract("placebot-web-linux-amd64")
+		os.rename("placebot-web-linux-amd64", "placebot_web_do_not_run")
+		os.system("chmod +x placebot_web_do_not_run")
+
+class PlacebotWeb:
+	def __init__(self):
+		if not os.path.isdir("web"):
+			print("Downloading a static build of the placebot-web client...")
+			
+			download_web_dist()
 		
-		download_web_zip()
-
-		os.mkdir("web")
-
-		with zipfile.ZipFile("dist.zip", "r") as f:
-			f.extractall("web")
+		if not os.path.isfile("placebot_web_do_not_run"):
+			print("Downloading a static build of the placebot-web server...")
+			
+			download_web_server()
 		
-		os.remove("dist.zip")
-	
-	# TODO: Make the static files work!
-	app = Flask("Placebot", static_folder="web", static_url_path="/")
+		threading.Thread(target=os.system, args=["./placebot_web_do_not_run web"]).start()
+	def update_status(self, configured, image, x, y):
+		payload = {
+			"configured": configured,
+			"image": image,
+			"x": x,
+			"y": y
+		}
 
-	CORS(app)
-
-	@app.route("/api/status", methods=["GET"])
-	def api_status():
-		configured = config_checker()
-
-		if configured:
-			return jsonify({
-				"configured": True,
-				"image": image,
-				"x": x,
-				"y": y
-			})
-		else:
-			return jsonify({
-				"configured": False
-			})
-	
-	app.run(port=8090)
-
-#if __name__ == '__main__':
-#	app.run()
+		requests.post("http://localhost:4000/api/setstatus", json=payload)

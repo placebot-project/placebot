@@ -5,6 +5,7 @@ from headers import *
 from canvas import *
 from PIL import Image
 import threading
+import platform
 import asyncio
 import random
 import time
@@ -18,9 +19,17 @@ def check_config():
 	else:
 		return True
 
-def start_web_interface():
-	pass
-	#start_server(sys.argv[1], int(sys.argv[2]), int(sys.argv[3]), check_config)
+if platform.system() == "Linux":
+	placebot_web = PlacebotWeb()
+	time.sleep(1)
+
+	print("Updating status...")
+
+	placebot_web.update_status(check_config(), sys.argv[1], int(sys.argv[2]), int(sys.argv[3]))
+
+#def start_web_interface():
+#	pass
+#	#start_server(sys.argv[1], int(sys.argv[2]), int(sys.argv[3]), check_config)
 
 im = Image.open(sys.argv[1]).convert("RGB")
 pixels = im.load()
@@ -89,4 +98,4 @@ async def bot(uri):
 #				await websocket.send(encode_pixel(packet_data["x"], packet_data["y"], (255, 255, 255)))
 #				await asyncio.sleep(delay)
 
-asyncio.run(bot("wss://pl.g7kk.com/ws"))
+#asyncio.run(bot("wss://pl.g7kk.com/ws"))

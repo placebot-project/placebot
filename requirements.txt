@@ -1,4 +1,2 @@
 websockets==10.2
 python-dotenv==0.20.0
-Flask==2.1.1
-Flask-Cors==3.0.10
