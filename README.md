@@ -14,3 +14,7 @@ A bot for https://pl.g7kk.com/ace
 	```
 	python3 main.py (image filename) (x) (y)
 	```
+
+# Maintainer info
+
+Discord: `thatretrodev#3049`
