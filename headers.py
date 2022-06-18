@@ -3,12 +3,12 @@ import platform
 import os
 
 if platform.system() != "Linux":
-	print("WARNING: Only Linux is officially supported. This means that the maintainers will not help you if you have an OS-specific problem, and will only help with reproducible problems that also apply to Linux.")
+	print("WARNING: Only Linux is supported. You can use this bot on " + platform.system() + ", but it won't be tested.")
 
 load_dotenv()
 
 headers = {
-	"User-Agent": "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:96.0) Gecko/20100101 Firefox/96.0",
+	"User-Agent": os.environ["USER_AGENT"],
 	"Accept": "*/*",
 	"Accept-Language": "en-US,en;q=0.5",
 	"Accept-Encoding": "gzip, deflate, br",
@@ -20,6 +20,5 @@ headers = {
 	"Sec-Fetch-Mode": "websocket",
 	"Sec-Fetch-Site": "same-origin",
 	"Pragma": "no-cache",
-	"Cache-Control": "no-cache",
-	"X-Place-Bot": "1"
+	"Cache-Control": "no-cache"
 }
