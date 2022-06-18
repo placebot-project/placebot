@@ -15,12 +15,12 @@ A bot for https://pl.g7kk.com/ace
 	```
 	python3 main.py (image filename) (x) (y)
 	```
-	Windows:
+	on Windows:
 	```
 	py main.py (image filename) (x) (y)
 	```
 
 # It doesn't work!
 
-Contact me on Discord: `thatretrodev#3049`
+Contact me on Discord: `thatretrodev#3049`  
 ...or Matrix: `@thatretrodev:matrix.org`
