@@ -11,7 +11,7 @@ It is *technically* possible to run placebot on Windows, but **DO NOT** submit a
 
 1. Download the source code using `git clone https://github.com/thatretrodev/placebot.git`
 2. Run `pip install -r requirements.txt` to install all of the dependencies.
-3. Use the DevTools in your browser to find the `cf_clearance` cookie.
+3. Use the Developer Tools in your browser to find the `cf_clearance` cookie.
 4. Create a `.env` file that looks like this:  
 	```
 	CF_TOKEN="cf_clearance=CLOUDFLARE_COOKIE_VALUE_HERE"
