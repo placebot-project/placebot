@@ -3,7 +3,7 @@ import platform
 import os
 
 if platform.system() != "Linux":
-	print("The only supported OS is Linux..")
+	print("The only supported OS is Linux.")
 	exit()
 
 load_dotenv()
