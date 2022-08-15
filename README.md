@@ -5,7 +5,7 @@ A bot for https://pl.g7kk.com/ace
 
 Windows is **not** supported.  
 Placebot is **only** supported on Linux.  
-It is *technically* possible to run placebot on Windows, but **DO NOT** submit an issue unless you can reproduce it on Linux without using WSL.
+All issues on Windows **will** be closed unless you can reproduce it on Linux without using WSL.  
 
 # How to run
 
