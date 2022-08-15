@@ -3,7 +3,8 @@ import platform
 import os
 
 if platform.system() != "Linux":
-	print("WARNING: Only Linux is supported. You can use this bot on " + platform.system() + ", but it won't be tested.")
+	print("The only supported OS is Linux..")
+	exit()
 
 load_dotenv()
 
