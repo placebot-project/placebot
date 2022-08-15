@@ -3,7 +3,7 @@ A bot for https://pl.g7kk.com/ace
 
 # ⚠️ WARNING ⚠️
 
-Windows is **not** supported.  
+Windows is **not** supported. **DO NOT** run this bot on Windows.  
 Placebot is **only** supported on Linux.  
 All issues on Windows **will** be closed unless you can reproduce it on Linux without using WSL.  
 
